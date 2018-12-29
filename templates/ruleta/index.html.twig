@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" type="text/css" href="{{asset('ruleta/css/ruleta.css')}}">
+{% endblock %}
+
+{% block body %}
+{{parent()}}
+    <div class="container">
+        <h1 class="text-center" > RULETA </h1>
+    </div>
+    <div class="container-fluid text-center">   
+        <div class="col-md-5">
+            <span class="glyphicon glyphicon-user"></span><label>JUGADOR 1</label>
+            <input type="text" placeholder="usuario" id="jugador1">
+            <input type="number" disabled="true" placeholder="Dinero" id="jugador1Dinero">
+            <button id="jugador1ini" class="btn-primary" onclick="iniciarSesion('jugador1');" >iniciar sesion</button>
+            <button id="jugador1clo" class="btn-primary" onclick="cerrarSesion('jugador1');" disabled="true">cerrar sesion</button>
+            <select class="btn" id="jugador1Apuesta" disabled="true" onchange="EscogerColor('jugador1Apuesta');">
+                <option>APUESTA</option>
+                {% for color in colores%}
+                <option>{{color.nombre}}</option>
+                {% endfor %}
+            </select>
+            <select class="btn" onchange="Apostar('jugador1');" id="jugador1porcentaje" disabled true>
+                <option value="0">PORCENTAJE</option>
+                {% for apuesta in apuestas %}
+                <option value="{{apuesta.porcentaje / 100}}">{{apuesta.porcentaje}}%</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-danger" id="jugador1ALLIN" disabled="true">ALL IN</button>
+        </div>
+
+        <div class="col-md-5">
+            <span class="glyphicon glyphicon-user"></span><label>JUGADOR 2</label>
+            <input type="text" placeholder="usuario" id="jugador2" >
+            <input type="number" disabled="true" placeholder="Dinero" id="jugador2Dinero">
+            <button id="jugador2ini" class="btn-primary" onclick="iniciarSesion('jugador2');">iniciar sesion</button>
+            <button id="jugador2clo" class="btn-primary" onclick="cerrarSesion('jugador2');"  disabled="true">cerrar sesion</button>
+            <select class="btn" id="jugador2Apuesta" disabled="true" onchange="EscogerColor('jugador2Apuesta');">
+                <option>APUESTA</option>
+                {% for color in colores%}
+                <option>{{color.nombre}}</option>
+                {% endfor %}
+            </select>
+            <select class="btn" id="jugador2porcentaje" onchange="Apostar('jugador2');" disabled="true">
+                <option>PORCENTAJE</option>
+                {% for apuesta in apuestas %}
+                <option value="{{apuesta.porcentaje / 100}}">{{apuesta.porcentaje}}%</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-danger" id="jugador2ALLIN" disabled="true">ALL IN</button>
+        </div>
+    </div>
+    <div class="container col-lg-12 text-center row">
+        <button class="btn btn-danger btn-group-lg" onclick="Ruleta();" id="ruleta" disabled="true">RULETA</button>
+        <input type="number" id="monto" placeholder="TOTAL" disabled="true" value=0>  
+        <button class="btn btn-group-lg btn-danger" onclick="AcabarJuego();" disabled="true" id="AcabarJuego">TERMINAR</button>
+    </div>
+    <div class="container-fluid text-center">
+        <div class="col-md-5 text-center" >
+            <span class="glyphicon glyphicon-user"></span><label>JUGADOR 3</label>
+            <input type="text" placeholder="usuario" id="jugador3">
+            <input type="number" disabled="true" placeholder="Dinero" id="jugador3Dinero">
+            <button id="jugador3ini" class="btn-primary" onclick="iniciarSesion('jugador3');">iniciar sesion</button>
+            <button id="jugador3clo" class="btn-primary" onclick="cerrarSesion('jugador3');" disabled="true">cerrar sesion</button>
+            <select class="btn" id="jugador3Apuesta" disabled="true" onchange="EscogerColor('jugador3Apuesta')">
+                <option >APUESTA</option>
+                {% for color in colores%}
+                <option>{{color.nombre}}</option>
+                {% endfor %}
+            </select>
+            <select class="btn" id="jugador3porcentaje" onchange="Apostar('jugador3');" disabled="true">
+                <option>PORCENTAJE</option>
+                {% for apuesta in apuestas %}
+                <option value="{{apuesta.porcentaje / 100}}">{{apuesta.porcentaje}}%</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-danger" id="jugador3ALLIN" disabled="true">ALL IN</button>
+        </div>
+        <div class="col-md-5 text-center">
+            <span class="glyphicon glyphicon-user"></span><label>JUGADOR 4</label>
+            <input type="text" placeholder="usuario" id="jugador4">
+            <input type="number" disabled="true" placeholder="Dinero" id="jugador4Dinero">
+            <button id="jugador4ini" class="btn-primary" onclick="iniciarSesion('jugador4');">iniciar sesion</button>
+            <button id="jugador4clo" class="btn-primary" onclick="cerrarSesion('jugador4');" disabled="true">cerrar sesion</button>
+            <select class="btn" id="jugador4Apuesta" disabled="true" onchange="EscogerColor('jugador4Apuesta');">
+                <option>APUESTA</option>
+                {% for color in colores%}
+                <option>{{color.nombre}}</option>
+                {% endfor %}
+            </select>
+            <select class="btn" id="jugador4porcentaje" onchange="Apostar('jugador4');" disabled="true" >
+                <option>PORCENTAJE</option>
+                {% for apuesta in apuestas %}
+                <option value="{{apuesta.porcentaje / 100}}">{{apuesta.porcentaje}}%</option>
+                {% endfor %}
+            </select>
+            <button class="btn btn-danger" id="jugador4ALLIN" disabled="true">ALL IN</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts%}
+{{ parent()}}
+<script type="text/javascript" src="{{asset('ruleta/js/ruleta.js')}}"></script>
+{%endblock%}

@@ -1,0 +1,34 @@
+ <style>
+        .container-fluid{
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+        .form-inline{
+            margin-left: 20px;
+        }
+        .h4{
+            font-weight: bold;
+        }
+        .form-inline > .form-group > .total{
+            font-weight: bold;
+            width: 100px;
+        }
+
+        .form-inline > .form-group > .mesas{
+            width: 90px;
+        }
+
+        .tamTotales{
+            font-size: 16px;
+        }
+
+        .container{
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .h1{
+            font-style: inherit
+            
+        }
+    </style>

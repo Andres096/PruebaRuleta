@@ -1,0 +1,11 @@
+###> symfony/framework-bundle ###
+.env
+/var/
+/vendor/
+.idea/
+/public/bundles/
+
+###> symfony/webpack-encore-pack ###
+/node_modules/
+/public/build/
+###< symfony/webpack-encore-pack ###
