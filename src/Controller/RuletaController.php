@@ -52,35 +52,35 @@ class RuletaController extends AbstractController
     }
 
 
-        /**
-     *
-     *
-     * @Route("/acabar_juego", name="acabar_juego", options={"expose" = true})
-     * 
-     */
-    public function acabarJuego(Request $request) {
-        $jugadores = $request->get("jugadores");
-        $data = json_decode($request->get("alias"));
-        $data2 = json_decode($request->get("Totales"));
-        if($data == null || $data2 == null){
-            throw new Exception("no pasa");
-        }
+    //     /**
+    //  *
+    //  *
+    //  * @Route("/acabar_juego", name="acabar_juego", options={"expose" = true})
+    //  * 
+    //  */
+    // public function acabarJuego(Request $request) {
+    //     $jugadores = $request->get("jugadores");
+    //     $data = json_decode($request->get("alias"));
+    //     $data2 = json_decode($request->get("Totales"));
+    //     if($data == null || $data2 == null){
+    //         throw new Exception("no pasa");
+    //     }
         
         
-        $em = $this->getDoctrine()->getManager();
+    //     $em = $this->getDoctrine()->getManager();
          
-        for ($i = 0; $i < $jugadores ; $i ++) {
-            $usuario = $data[$i];
-            $dineroTotal = $data2[$i];
-            $jugador = $em->getRepository(Jugador::class)->findOneBy(array('usuario' => $usuario));
-            $jugador->setDinero($dineroTotal);
-            $em->persist($jugador);
-            $em->flush();
-        }
-        $response = new Response(1);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
+    //     for ($i = 0; $i < $jugadores ; $i ++) {
+    //         $usuario = $data[$i];
+    //         $dineroTotal = $data2[$i];
+    //         $jugador = $em->getRepository(Jugador::class)->findOneBy(array('usuario' => $usuario));
+    //         $jugador->setDinero($dineroTotal);
+    //         $em->persist($jugador);
+    //         $em->flush();
+    //     }
+    //     $response = new Response(1);
+    //     $response->headers->set('Content-Type', 'application/json');
+    //     return $response;
+    // }
 
         /**
      *

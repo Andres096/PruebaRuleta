@@ -6,6 +6,10 @@
  var jugadoresApostando = [];
  // usuarios en uso
  var usuarios = [];
+// plazas de jugadores ocupados
+ var jugadoresEnUso = [];
+ //dinero de los usuarios
+ var dinero = [];
 
 function iniciarSesion(id) {
             var contraseña;
@@ -38,6 +42,8 @@ function iniciarSesion(id) {
                             $("#" + id + "clo").attr('disabled', false);
                             $("#" + id + "ini").attr('disabled', true);
                             usuarios[jugadoresActivos] = data["usuario"];
+                            jugadoresEnUso[jugadoresActivos] = id;
+                            dinero[data["usuario"]] = data["dinero"];
                             jugadoresActivos++;
 
 
@@ -103,35 +109,11 @@ function iniciarSesion(id) {
 
         function AcabarJuego()
         {
-            var jugadores = [];
-            var array_dinero = [];
-            for (var i = 0; i < jugadoresActivos; i++) {
-                jugadores [i] = $("#jugador" + (i + 1)).val();
-                array_dinero [i] = $("#jugador" + (i + 1) + "Dinero").val();
 
-            }
-            $.ajax({
-                url: Routing.generate('acabar_juego'),
-                data: (({alias: JSON.stringify(jugadores), Totales: JSON.stringify (array_dinero), jugadores: jugadoresActivos})),
-                method: 'POST',
-                dataType: "json",
-                success: function (data) {
-                    if (data === 1) {
-                        swal('FINAL DEL JUEGO','Gracias por jugar', 'sucess');
-                        for (var i = 1; i <= jugadoresActivos; i++) {
-                            jugadores [i] = $("#jugador" + i).val("");
-                            array_dinero [i] = $("#jugador" + i + "Dinero").val("0");
-                            array_dinero [i] = $("#jugador" + i + "Apuesta").attr('disabled', true);
-                            array_dinero [i] = $("#jugador" + i + "porcentaje").attr('disabled', true);
-                            $("#AcabarJuego").attr('disabled', true);
-                            $("#Ruleta").attr('disabled', true);
+           for (var i = 0 ; i < jugadoresActivos; i++){
+                 cerrarSesion(jugadoresEnUso[i]);
+           }
 
-                        }
-
-                    }
-                }
-
-            });
         }
 
         function Ruleta() {
@@ -206,7 +188,7 @@ function iniciarSesion(id) {
                 $("#monto").val("0");
                 numeroDeApuestas = 0;
                 jugadoresApostando = [];
-                $("#ruleta").attr('disabled', false);
+                $("#ruleta").attr('disabled', true);
         }
 
             function cerrarSesion(id){

@@ -25,7 +25,7 @@
                 {% endfor %}
             </select>
             <select class="btn" onchange="Apostar('jugador1');" id="jugador1porcentaje" disabled true>
-                <option value="0">PORCENTAJE</option>
+                <option value="default">PORCENTAJE</option>
                 {% for apuesta in apuestas %}
                 <option value="{{apuesta.porcentaje / 100}}">{{apuesta.porcentaje}}%</option>
                 {% endfor %}
@@ -40,7 +40,7 @@
             <button id="jugador2ini" class="btn-primary" onclick="iniciarSesion('jugador2');">iniciar sesion</button>
             <button id="jugador2clo" class="btn-primary" onclick="cerrarSesion('jugador2');"  disabled="true">cerrar sesion</button>
             <select class="btn" id="jugador2Apuesta" disabled="true" onchange="EscogerColor('jugador2Apuesta');">
-                <option>APUESTA</option>
+                <option value="default">APUESTA</option>
                 {% for color in colores%}
                 <option>{{color.nombre}}</option>
                 {% endfor %}
