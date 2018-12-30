@@ -1,9 +1,9 @@
 ###> symfony/framework-bundle ###
-.env
+##.env##
 /var/
-/vendor/
-.idea/
-/public/bundles/
+##/vendor/##
+##.idea/##
+##/public/bundles/##
 
 ###> symfony/webpack-encore-pack ###
 /node_modules/
